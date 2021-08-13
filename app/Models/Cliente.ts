@@ -1,0 +1,58 @@
+import { DateTime } from 'luxon'
+import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+
+// table.string('nome')
+//       table.string('cpf')
+//       table.string('telefone')
+//       table.string('email')
+//       table.string('cep')
+//       table.string('cidade')
+//       table.string('bairro')
+//       table.string('rua')
+//       table.string('numero')
+//       table.string('ddd')
+//       table.boolean('ativo').defaultTo(true)
+
+export default class Cliente extends BaseModel {
+  @column({ isPrimary: true })
+  public id: number
+
+  @column()
+  public nome: string
+
+  @column()
+  public telefone: string
+
+  @column()
+  public email: string
+
+  @column()
+  public cpf: string
+
+  @column()
+  public cep: string
+
+  @column()
+  public cidade: string
+
+  @column()
+  public bairro: string
+
+  @column()
+  public rua: string
+
+  @column()
+  public numero: string
+
+  @column()
+  public ddd: string
+
+  @column()
+  public ativo: boolean
+
+  @column.dateTime({ autoCreate: true })
+  public createdAt: DateTime
+
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  public updatedAt: DateTime
+}

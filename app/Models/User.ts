@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import { column, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
+import { column, beforeSave, BaseModel, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
+import Avatar from './Avatar'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -15,13 +16,33 @@ export default class User extends BaseModel {
   @column({ serializeAs: null })
   public password: string
 
+  @column({ serializeAs: null })
+  public ativo: boolean
+
   @column()
+  public token: string
+
+  @column({ serializeAs: null })
   public rememberMeToken?: string
 
-  @column.dateTime({ autoCreate: true })
+  @hasOne(() => Avatar, { foreignKey: 'user_id' })
+  public avatar: HasOne<typeof Avatar>
+
+  @column.dateTime({
+    autoCreate: true,
+    serialize: (value: DateTime) => {
+      return value.toFormat('dd/MM/yyyy')
+    },
+  })
   public createdAt: DateTime
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  @column.dateTime({
+    autoCreate: true,
+    autoUpdate: true,
+    serialize: (value: DateTime) => {
+      return value.toFormat('dd/MM/yyyy')
+    },
+  })
   public updatedAt: DateTime
 
   @beforeSave()
