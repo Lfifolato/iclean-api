@@ -1,18 +1,6 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
 
-// table.string('nome')
-//       table.string('cpf')
-//       table.string('telefone')
-//       table.string('email')
-//       table.string('cep')
-//       table.string('cidade')
-//       table.string('bairro')
-//       table.string('rua')
-//       table.string('numero')
-//       table.string('ddd')
-//       table.boolean('ativo').defaultTo(true)
-
 export default class Cliente extends BaseModel {
   @column({ isPrimary: true })
   public id: number

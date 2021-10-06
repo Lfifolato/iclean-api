@@ -7,9 +7,9 @@ Route.get('/', async () => {
 Route.post('/session', 'SessionController.store')
 Route.delete('/session', 'SessionController.destroy')
 
+Route.resource('/user', 'UsersController').apiOnly()
+Route.resource('/cliente', 'ClientesController').apiOnly()
 Route.group(() => {
-  Route.resource('/user', 'UsersController').apiOnly()
-  Route.resource('/cliente', 'ClientesController').apiOnly()
   Route.resource('/service', 'ServicesController').apiOnly()
   Route.resource('/avatar', 'AvatarsController').apiOnly()
 }).middleware('auth')

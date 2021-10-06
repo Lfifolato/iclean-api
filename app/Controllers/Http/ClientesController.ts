@@ -16,7 +16,7 @@ export default class ClientesController {
     const nome = data.nome
     mail.send((massage) => {
       massage.to(data.email)
-      massage.from('contato@iclean.com', 'I-clean')
+      massage.from('luiz.fifolato@lfsistemas.net', 'I-clean')
       massage.subject('Boas vindas I-clean')
       massage.htmlView('emails/cadastrado', { nome })
     })
